@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Studio - Professional Technology Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    popover: {
+                        DEFAULT: "var(--popover)",
+                        foreground: "var(--popover-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    destructive: {
+                        DEFAULT: "var(--destructive)",
+                        foreground: "var(--destructive-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                },
+                fontFamily: {
+                    sans: ["Inter", "var(--font-sans)"],
+                    serif: ["Poppins", "var(--font-serif)"],
+                    mono: ["var(--font-mono)"],
+                },
+                animation: {
+                    'float': 'float 6s ease-in-out infinite',
+                    'glow': 'glow 2s ease-in-out infinite alternate',
+                    'slide-up': 'slideUp 0.8s ease-out',
+                    'fade-in': 'fadeIn 1s ease-out',
+                }
+            },
+        }
+    };
+    </script>
+    <style>
+        :root {
+            --background: hsl(223 31% 8%);
+            --foreground: hsl(210 40% 98%);
+            --card: hsl(222 84% 12%);
+            --card-foreground: hsl(210 40% 98%);
+            --popover: hsl(222 84% 12%);
+            --popover-foreground: hsl(210 40% 98%);
+            --primary: hsl(207 89% 42%);
+            --primary-foreground: hsl(210 40% 98%);
+            --secondary: hsl(217 32% 17%);
+            --secondary-foreground: hsl(210 40% 98%);
+            --muted: hsl(217 32% 17%);
+            --muted-foreground: hsl(215 20.2% 65.1%);
+            --accent: hsl(207 89% 25%);
+            --accent-foreground: hsl(210 40% 98%);
+            --destructive: hsl(0 75% 60%);
+            --destructive-foreground: hsl(210 40% 98%);
+            --border: hsl(217 32% 17%);
+            --input: hsl(217 32% 17%);
+            --ring: hsl(207 89% 42%);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--foreground);
+            cursor: none;
+            overflow-x: hidden;
+        }
+
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #0F3460, #E94560);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-hover {
+            transform: scale(2);
+            background: linear-gradient(135deg, #E94560, #0F3460);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px hsl(207 89% 42%); }
+            to { box-shadow: 0 0 30px hsl(207 89% 42%), 0 0 40px hsl(207 89% 42%); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .glassmorphism {
+            background: rgba(15, 52, 96, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(15, 52, 96, 0.2);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0F3460, #E94560);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(15, 52, 96, 0.3);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.1), rgba(233, 69, 96, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .tech-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-symbol {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0F3460, #4F8EF7);
+            transform: rotate(45deg);
+            position: relative;
+            border-radius: 8px;
+        }
+
+        .logo-symbol::before {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            color: white;
+            font-size: 20px;
+        }
+
+        /* Smooth scrolling and section animations */
+        .scroll-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom animations for hero section */
+        .hero-content {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Testimonial carousel */
+        .testimonial-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        /* Form styles */
+        .form-input {
+            background: rgba(15, 52, 96, 0.1);
+            border: 1px solid rgba(15, 52, 96, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glassmorphism">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- @COMPONENT: Logo -->
+                <div class="tech-logo hover-element">
+                    <div class="logo-symbol animate-glow"></div>
+                    <span class="text-xl font-bold text-primary-foreground">TechStudio</span>
+                </div>
+                <!-- @END_COMPONENT: Logo -->
+
+                <!-- @COMPONENT: Navigation Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="hover-element text-muted-foreground hover:text-primary transition-colors">Home</a>
+                    <a href="#services" class="hover-element text-muted-foreground hover:text-primary transition-colors">Services</a>
+                    <a href="#about" class="hover-element text-muted-foreground hover:text-primary transition-colors">About</a>
+                    <a href="#testimonials" class="hover-element text-muted-foreground hover:text-primary transition-colors">Testimonials</a>
+                    <a href="#contact" class="hover-element bg-primary text-primary-foreground px-6 py-2 rounded-lg transition-all hover:bg-accent">Contact</a>
+                </div>
+                <!-- @END_COMPONENT: Navigation Menu -->
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden hover-element">
+                    <i class="fas fa-bars text-primary-foreground text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Background with parallax effect -->
+        <div class="absolute inset-0 bg-gradient-to-br from-background via-secondary to-accent opacity-50"></div>
+        
+        <!-- Floating background elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full floating-element"></div>
+        <div class="absolute bottom-20 right-10 w-32 h-32 bg-destructive/20 rounded-full floating-element" style="animation-delay: -2s;"></div>
+        <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-accent/20 rounded-full floating-element" style="animation-delay: -4s;"></div>
+
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="hero-content max-w-4xl mx-auto">
+                <!-- Large Tech Studio Logo -->
+                <div class="flex justify-center mb-8">
+                    <div class="tech-logo flex-col items-center">
+                        <div class="logo-symbol w-24 h-24 mb-4 animate-glow mx-auto">
+                            <div class="logo-symbol::before text-4xl"></div>
+                        </div>
+                        <h1 class="text-6xl md:text-7xl font-bold gradient-text mb-6">TechStudio</h1>
+                    </div>
+                </div>
+
+                <p class="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
+                    Transforming businesses through cutting-edge technology solutions. 
+                    From AI automation to custom development, we bring your digital vision to life.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#services" class="hover-element bg-primary text-primary-foreground px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:bg-accent transform hover:scale-105">
+                        Explore Services
+                    </a>
+                    <a href="#contact" class="hover-element border border-primary text-primary px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:bg-primary hover:text-primary-foreground">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 scroll-section">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">Our Services</h2>
+                <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                    Comprehensive technology solutions designed to accelerate your business growth and digital transformation.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- @COMPONENT: Service Card - AI Agents -->
+                <div class="service-card glassmorphism rounded-xl p-8 hover-element">
+                    <!-- Professional AI automation dashboard with multiple screens showing data analytics -->
+                    <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="AI automation interfaces" class="w-full h-48 object-cover rounded-lg mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-robot text-primary text-2xl mr-4"></i>
+                        <h3 class="text-xl font-bold text-card-foreground">Custom AI Agents & Automation</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6">
+                        Intelligent automation solutions that streamline your workflows, reduce manual tasks, and enhance productivity through custom AI agents.
+                    </p>
+                    <a href="#contact" class="text-primary hover:text-accent transition-colors font-semibold hover-element">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <!-- @END_COMPONENT: Service Card - AI Agents -->
+
+                <!-- @COMPONENT: Service Card - Personal Branding -->
+                <div class="service-card glassmorphism rounded-xl p-8 hover-element">
+                    <!-- Creative workspace with branding materials, logos, and design elements -->
+                    <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Personal branding design workspace" class="w-full h-48 object-cover rounded-lg mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-palette text-primary text-2xl mr-4"></i>
+                        <h3 class="text-xl font-bold text-card-foreground">Personal Branding Services</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6">
+                        Crafting compelling personal brands that resonate with your audience and establish your unique digital presence across all platforms.
+                    </p>
+                    <a href="#contact" class="text-primary hover:text-accent transition-colors font-semibold hover-element">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <!-- @END_COMPONENT: Service Card - Personal Branding -->
+
+                <!-- @COMPONENT: Service Card - Video Creation -->
+                <div class="service-card glassmorphism rounded-xl p-8 hover-element">
+                    <!-- Modern video production studio with cameras, lights, and editing equipment -->
+                    <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Video production studio setup" class="w-full h-48 object-cover rounded-lg mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-video text-primary text-2xl mr-4"></i>
+                        <h3 class="text-xl font-bold text-card-foreground">UGC & Avatar Video Creation</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6">
+                        Engaging user-generated content and custom avatar videos that tell your story and connect with your audience authentically.
+                    </p>
+                    <a href="#contact" class="text-primary hover:text-accent transition-colors font-semibold hover-element">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <!-- @END_COMPONENT: Service Card - Video Creation -->
+
+                <!-- @COMPONENT: Service Card - Graphics/Video Editing -->
+                <div class="service-card glassmorphism rounded-xl p-8 hover-element">
+                    <!-- Professional designer working on graphics with multiple monitors showing design software -->
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Graphics and video editing workspace" class="w-full h-48 object-cover rounded-lg mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-edit text-primary text-2xl mr-4"></i>
+                        <h3 class="text-xl font-bold text-card-foreground">Graphics & Video Editing</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6">
+                        Professional graphics design and video editing services that bring your creative vision to life with precision and artistic flair.
+                    </p>
+                    <a href="#contact" class="text-primary hover:text-accent transition-colors font-semibold hover-element">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <!-- @END_COMPONENT: Service Card - Graphics/Video Editing -->
+
+                <!-- @COMPONENT: Service Card - Web Development -->
+                <div class="service-card glassmorphism rounded-xl p-8 hover-element">
+                    <!-- Modern web development workspace with multiple screens showing code and websites -->
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Web development workspace with code" class="w-full h-48 object-cover rounded-lg mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-code text-primary text-2xl mr-4"></i>
+                        <h3 class="text-xl font-bold text-card-foreground">Website & Mobile App Development</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6">
+                        Custom web and mobile applications built with cutting-edge technologies, ensuring scalability, performance, and exceptional user experience.
+                    </p>
+                    <a href="#contact" class="text-primary hover:text-accent transition-colors font-semibold hover-element">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <!-- @END_COMPONENT: Service Card - Web Development -->
+
+                <!-- @COMPONENT: Service Card - Trading Algorithms -->
+                <div class="service-card glassmorphism rounded-xl p-8 hover-element">
+                    <!-- Financial trading dashboard with charts, graphs, and algorithmic trading interfaces -->
+                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Trading algorithms visualization dashboard" class="w-full h-48 object-cover rounded-lg mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-chart-line text-primary text-2xl mr-4"></i>
+                        <h3 class="text-xl font-bold text-card-foreground">Trading Algorithm Services</h3>
+                    </div>
+                    <p class="text-muted-foreground mb-6">
+                        NISM certified experts with 5+ years experience delivering custom and pre-built trading algorithms for optimal market performance.
+                    </p>
+                    <a href="#contact" class="text-primary hover:text-accent transition-colors font-semibold hover-element">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <!-- @END_COMPONENT: Service Card - Trading Algorithms -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 scroll-section">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">About TechStudio</h2>
+                    <p class="text-xl text-muted-foreground mb-6 leading-relaxed">
+                        We are a team of passionate technologists dedicated to transforming businesses through innovative digital solutions. 
+                        Our mission is to bridge the gap between complex technology and practical business needs.
+                    </p>
+                    <p class="text-lg text-muted-foreground mb-8 leading-relaxed">
+                        With expertise spanning AI automation, creative design, web development, and financial technology, 
+                        we deliver comprehensive solutions that drive growth and efficiency for our clients.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <h3 class="text-3xl font-bold text-primary mb-2" data-count="50">0+</h3>
+                            <p class="text-muted-foreground">Projects Completed</p>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-3xl font-bold text-primary mb-2" data-count="25">0+</h3>
+                            <p class="text-muted-foreground">Happy Clients</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <!-- Professional technology team collaborating in modern office environment -->
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Technology team collaboration" class="rounded-xl shadow-2xl floating-element">
+                    
+                    <!-- Floating cards with tech icons -->
+                    <div class="absolute -top-6 -right-6 glassmorphism rounded-lg p-4 floating-element" style="animation-delay: -1s;">
+                        <i class="fas fa-brain text-primary text-2xl"></i>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 glassmorphism rounded-lg p-4 floating-element" style="animation-delay: -3s;">
+                        <i class="fas fa-rocket text-destructive text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 scroll-section">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">What Our Clients Say</h2>
+                <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                    Don't just take our word for it. Here's what our satisfied clients have to say about our services.
+                </p>
+            </div>
+
+            <!-- @COMPONENT: Testimonials Carousel -->
+            <div class="relative overflow-hidden">
+                <div class="testimonial-slider" id="testimonialSlider">
+                    <!-- Testimonial 1 -->
+                    <div class="w-full flex-shrink-0 px-4">
+                        <div class="glassmorphism rounded-xl p-8 max-w-4xl mx-auto text-center">
+                            <div class="flex justify-center mb-6">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <blockquote class="text-xl text-muted-foreground mb-6 italic">
+                                "TechStudio transformed our business with their AI automation solutions. We've seen a 40% increase in efficiency and our team can now focus on strategic initiatives rather than repetitive tasks."
+                            </blockquote>
+                            <div class="flex items-center justify-center">
+                                <div>
+                                    <h4 class="font-semibold text-card-foreground">Sarah Johnson</h4>
+                                    <p class="text-muted-foreground">CEO, Digital Innovations Inc.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="w-full flex-shrink-0 px-4">
+                        <div class="glassmorphism rounded-xl p-8 max-w-4xl mx-auto text-center">
+                            <div class="flex justify-center mb-6">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <blockquote class="text-xl text-muted-foreground mb-6 italic">
+                                "The trading algorithms developed by their NISM certified team have consistently outperformed our expectations. Professional, reliable, and incredibly knowledgeable."
+                            </blockquote>
+                            <div class="flex items-center justify-center">
+                                <div>
+                                    <h4 class="font-semibold text-card-foreground">Michael Chen</h4>
+                                    <p class="text-muted-foreground">Fund Manager, Alpha Capital</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="w-full flex-shrink-0 px-4">
+                        <div class="glassmorphism rounded-xl p-8 max-w-4xl mx-auto text-center">
+                            <div class="flex justify-center mb-6">
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <blockquote class="text-xl text-muted-foreground mb-6 italic">
+                                "Their video content and personal branding services helped us increase our social media engagement by 300%. The team is creative, professional, and delivers on time."
+                            </blockquote>
+                            <div class="flex items-center justify-center">
+                                <div>
+                                    <h4 class="font-semibold text-card-foreground">Emma Rodriguez</h4>
+                                    <p class="text-muted-foreground">Marketing Director, CreativeCorp</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation buttons -->
+                <button class="absolute left-4 top-1/2 -translate-y-1/2 glassmorphism rounded-full p-3 hover-element" id="prevBtn">
+                    <i class="fas fa-chevron-left text-primary"></i>
+                </button>
+                <button class="absolute right-4 top-1/2 -translate-y-1/2 glassmorphism rounded-full p-3 hover-element" id="nextBtn">
+                    <i class="fas fa-chevron-right text-primary"></i>
+                </button>
+            </div>
+            <!-- @END_COMPONENT: Testimonials Carousel -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 scroll-section">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-6">Get In Touch</h2>
+                <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
+                    Ready to transform your business with cutting-edge technology? Let's discuss your project and bring your vision to life.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- @COMPONENT: Contact Form -->
+                <div class="glassmorphism rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-card-foreground mb-6">Send us a message</h3>
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="firstName" class="block text-sm font-medium text-muted-foreground mb-2">First Name</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input w-full px-4 py-3 rounded-lg text-card-foreground focus:outline-none" required data-mock="true">
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-medium text-muted-foreground mb-2">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input w-full px-4 py-3 rounded-lg text-card-foreground focus:outline-none" required data-mock="true">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-muted-foreground mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="form-input w-full px-4 py-3 rounded-lg text-card-foreground focus:outline-none" required data-mock="true">
+                        </div>
+                        
+                        <div>
+                            <label for="service" class="block text-sm font-medium text-muted-foreground mb-2">Service Interested In</label>
+                            <select id="service" name="service" class="form-input w-full px-4 py-3 rounded-lg text-card-foreground focus:outline-none" data-mock="true">
+                                <option value="">Select a service</option>
+                                <option value="ai-automation">AI Agents & Automation</option>
+                                <option value="personal-branding">Personal Branding</option>
+                                <option value="video-creation">Video Creation</option>
+                                <option value="graphics-editing">Graphics & Video Editing</option>
+                                <option value="web-development">Web & Mobile Development</option>
+                                <option value="trading-algorithms">Trading Algorithms</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-muted-foreground mb-2">Message</label>
+                            <textarea id="message" name="message" rows="4" class="form-input w-full px-4 py-3 rounded-lg text-card-foreground focus:outline-none resize-none" required data-mock="true"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="hover-element w-full bg-primary text-primary-foreground py-3 rounded-lg font-semibold transition-all hover:bg-accent transform hover:scale-105" data-event="click:handleSubmit">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                <!-- @END_COMPONENT: Contact Form -->
+
+                <!-- @COMPONENT: Contact Information -->
+                <div class="space-y-8">
+                    <div class="glassmorphism rounded-xl p-8">
+                        <h3 class="text-2xl font-bold text-card-foreground mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-primary text-xl w-8"></i>
+                                <div>
+                                    <p class="font-semibold text-card-foreground">Email</p>
+                                    <p class="text-muted-foreground">hello@techstudio.in</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-primary text-xl w-8"></i>
+                                <div>
+                                    <p class="font-semibold text-card-foreground">Phone</p>
+                                    <p class="text-muted-foreground">+91 98765 43210</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-primary text-xl w-8"></i>
+                                <div>
+                                    <p class="font-semibold text-card-foreground">Location</p>
+                                    <p class="text-muted-foreground">Mumbai, Maharashtra, India</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-primary text-xl w-8"></i>
+                                <div>
+                                    <p class="font-semibold text-card-foreground">Business Hours</p>
+                                    <p class="text-muted-foreground">Mon - Fri: 9:00 AM - 6:00 PM IST</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glassmorphism rounded-xl p-8">
+                        <h3 class="text-xl font-bold text-card-foreground mb-4">Follow Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="hover-element bg-primary/20 text-primary p-3 rounded-lg transition-all hover:bg-primary hover:text-primary-foreground">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="#" class="hover-element bg-primary/20 text-primary p-3 rounded-lg transition-all hover:bg-primary hover:text-primary-foreground">
+                                <i class="fab fa-twitter text-xl"></i>
+                            </a>
+                            <a href="#" class="hover-element bg-primary/20 text-primary p-3 rounded-lg transition-all hover:bg-primary hover:text-primary-foreground">
+                                <i class="fab fa-instagram text-xl"></i>
+                            </a>
+                            <a href="#" class="hover-element bg-primary/20 text-primary p-3 rounded-lg transition-all hover:bg-primary hover:text-primary-foreground">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: Contact Information -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-border">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="tech-logo mb-4">
+                        <div class="logo-symbol"></div>
+                        <span class="text-xl font-bold text-primary-foreground">TechStudio</span>
+                    </div>
+                    <p class="text-muted-foreground mb-4 max-w-md">
+                        Transforming businesses through innovative technology solutions. Your trusted partner for digital transformation.
+                    </p>
+                    <p class="text-sm text-muted-foreground">
+                        © 2024 TechStudio. All rights reserved.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-card-foreground mb-4">Services</h4>
+                    <ul class="space-y-2 text-muted-foreground">
+                        <li><a href="#services" class="hover:text-primary transition-colors">AI Automation</a></li>
+                        <li><a href="#services" class="hover:text-primary transition-colors">Personal Branding</a></li>
+                        <li><a href="#services" class="hover:text-primary transition-colors">Video Creation</a></li>
+                        <li><a href="#services" class="hover:text-primary transition-colors">Web Development</a></li>
+                        <li><a href="#services" class="hover:text-primary transition-colors">Trading Algorithms</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-card-foreground mb-4">Company</h4>
+                    <ul class="space-y-2 text-muted-foreground">
+                        <li><a href="#about" class="hover:text-primary transition-colors">About Us</a></li>
+                        <li><a href="#testimonials" class="hover:text-primary transition-colors">Testimonials</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Custom cursor functionality
+        (() => {
+            const cursor = document.getElementById('cursor');
+            const hoverElements = document.querySelectorAll('.hover-element');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            hoverElements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    cursor.classList.add('cursor-hover');
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('cursor-hover');
+                });
+            });
+        })();
+
+        // Smooth scrolling
+        (() => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        })();
+
+        // Scroll animations
+        (() => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.scroll-section').forEach(section => {
+                observer.observe(section);
+            });
+        })();
+
+        // Testimonial carousel
+        (() => {
+            const slider = document.getElementById('testimonialSlider');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentSlide = 0;
+            const totalSlides = 3;
+
+            function updateSlider() {
+                const translateX = -currentSlide * 100;
+                slider.style.transform = `translateX(${translateX}%)`;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+            });
+
+            // Auto-play carousel
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            }, 5000);
+        })();
+
+        // Contact form handling
+        (() => {
+            const form = document.getElementById('contactForm');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // TODO: Implement form submission logic
+                alert('Thank you for your message! We\'ll get back to you soon.');
+                form.reset();
+            });
+        })();
+
+        // Counter animation
+        (() => {
+            const counters = document.querySelectorAll('[data-count]');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.getAttribute('data-count'));
+                        let current = 0;
+                        const increment = target / 50;
+                        
+                        const updateCounter = () => {
+                            if (current < target) {
+                                current += increment;
+                                counter.textContent = Math.ceil(current) + '+';
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                counter.textContent = target + '+';
+                            }
+                        };
+                        
+                        updateCounter();
+                        observer.unobserve(counter);
+                    }
+                });
+            });
+
+            counters.forEach(counter => observer.observe(counter));
+        })();
+    </script>
+</body>
+</html>

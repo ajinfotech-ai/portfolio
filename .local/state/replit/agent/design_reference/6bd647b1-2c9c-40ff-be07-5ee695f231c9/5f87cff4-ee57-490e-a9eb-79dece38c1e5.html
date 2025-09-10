@@ -1,0 +1,735 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStudio - Professional Technology Services | Custom AI, Development & Trading Solutions</title>
+    <meta name="description" content="TechStudio offers premium technology services including custom AI agents, personal branding, video creation, web development, and NISM-certified trading algorithms. Transform your business with cutting-edge solutions.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    destructive: {
+                        DEFAULT: "var(--destructive)",
+                        foreground: "var(--destructive-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                },
+                fontFamily: {
+                    sans: ["Inter", "system-ui", "sans-serif"],
+                }
+            },
+        }
+    };
+    </script>
+    
+    <style>
+        :root {
+            --background: hsl(210 40% 96%);
+            --foreground: hsl(210 11% 15%);
+            --card: hsl(0 0% 100%);
+            --card-foreground: hsl(210 11% 15%);
+            --primary: hsl(218 89% 18%);
+            --primary-foreground: hsl(0 0% 100%);
+            --secondary: hsl(218 50% 25%);
+            --secondary-foreground: hsl(0 0% 100%);
+            --muted: hsl(210 40% 94%);
+            --muted-foreground: hsl(215 15% 65%);
+            --accent: hsl(213 93% 22%);
+            --accent-foreground: hsl(0 0% 100%);
+            --destructive: hsl(354 70% 54%);
+            --destructive-foreground: hsl(0 0% 100%);
+            --border: hsl(214 32% 91%);
+            --input: hsl(214 32% 91%);
+            --ring: hsl(213 93% 22%);
+            --radius: 8px;
+        }
+        
+        /* Custom animations for scroll effects */
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+        }
+        
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(26, 26, 46, 0.15);
+        }
+        
+        .tech-pattern {
+            background-image: 
+                radial-gradient(circle at 1px 1px, rgba(79, 172, 254, 0.1) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+    </style>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-background text-foreground font-sans antialiased">
+    <!-- @COMPONENT: Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Tech Studio Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center transform rotate-45">
+                        <i class="fas fa-sparkles text-white text-sm transform -rotate-45"></i>
+                    </div>
+                    <span class="text-xl font-bold text-foreground">TechStudio</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-muted-foreground hover:text-foreground transition-colors">Services</a>
+                    <a href="#about" class="text-muted-foreground hover:text-foreground transition-colors">About</a>
+                    <a href="#testimonials" class="text-muted-foreground hover:text-foreground transition-colors">Testimonials</a>
+                    <a href="#contact" class="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
+                    <button class="bg-primary text-primary-foreground px-6 py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                        Get Started
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-foreground">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- @END_COMPONENT: Navigation -->
+
+    <!-- @COMPONENT: Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden tech-pattern">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 gradient-bg opacity-5"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="text-center lg:text-left">
+                    <!-- @FUNCTIONALITY: Implement animated text reveal on scroll -->
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                            Professional Technology
+                        </span>
+                        <br>
+                        <span class="text-foreground">Services That</span>
+                        <br>
+                        <span class="text-destructive">Transform Business</span>
+                    </h1>
+                    
+                    <p class="text-lg text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0">
+                        From custom AI agents and trading algorithms to comprehensive development solutions. 
+                        We help businesses leverage cutting-edge technology to achieve exponential growth.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button class="bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary/90 transition-colors shadow-lg">
+                            Explore Our Services
+                        </button>
+                        <button class="border border-border text-foreground px-8 py-4 rounded-lg font-semibold text-lg hover:bg-muted transition-colors">
+                            <i class="fas fa-play mr-2"></i>
+                            Watch Demo
+                        </button>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-border">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-primary">500+</div>
+                            <div class="text-sm text-muted-foreground">Projects Delivered</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-primary">5+</div>
+                            <div class="text-sm text-muted-foreground">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-primary">98%</div>
+                            <div class="text-sm text-muted-foreground">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Content - Hero Visual -->
+                <div class="relative">
+                    <!-- Professional technology workspace setup -->
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                         alt="Modern technology workspace with multiple screens" 
+                         class="rounded-2xl shadow-2xl animate-float" />
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute -top-6 -right-6 w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center animate-float" style="animation-delay: 0.5s;">
+                        <i class="fas fa-robot text-primary text-2xl"></i>
+                    </div>
+                    
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-destructive/10 rounded-2xl flex items-center justify-center animate-float" style="animation-delay: 1s;">
+                        <i class="fas fa-chart-line text-destructive text-3xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Hero Section -->
+
+    <!-- @COMPONENT: Services Section -->
+    <section id="services" class="py-20 bg-muted/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                    <span class="text-muted-foreground">Our</span> 
+                    <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Services</span>
+                </h2>
+                <p class="text-lg text-muted-foreground max-w-3xl mx-auto">
+                    Comprehensive technology solutions designed to accelerate your business growth and digital transformation journey.
+                </p>
+            </div>
+            
+            <!-- Services Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- AI Agents Service -->
+                <div class="service-card bg-card rounded-2xl p-8 border border-border">
+                    <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-robot text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Custom AI Agents & Automations</h3>
+                    <p class="text-muted-foreground mb-6">
+                        Intelligent automation solutions that streamline workflows, enhance productivity, and deliver 24/7 customer support through advanced AI technology.
+                    </p>
+                    <div class="flex items-center text-primary font-medium">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </div>
+                </div>
+                
+                <!-- Personal Branding Service -->
+                <div class="service-card bg-card rounded-2xl p-8 border border-border">
+                    <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-user-check text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Personal Branding</h3>
+                    <p class="text-muted-foreground mb-6">
+                        Build a compelling personal brand that establishes authority, attracts opportunities, and positions you as an industry leader.
+                    </p>
+                    <div class="flex items-center text-primary font-medium">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </div>
+                </div>
+                
+                <!-- Video Creation Service -->
+                <div class="service-card bg-card rounded-2xl p-8 border border-border">
+                    <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-video text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">UGC & Custom Avatar Videos</h3>
+                    <p class="text-muted-foreground mb-6">
+                        Engaging video content with custom avatars and user-generated content strategies that drive engagement and conversions.
+                    </p>
+                    <div class="flex items-center text-primary font-medium">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </div>
+                </div>
+                
+                <!-- Graphics & Video Editing Service -->
+                <div class="service-card bg-card rounded-2xl p-8 border border-border">
+                    <div class="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-palette text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Graphics & Video Editing</h3>
+                    <p class="text-muted-foreground mb-6">
+                        Professional visual content creation including graphics design, video editing, and multimedia production for all platforms.
+                    </p>
+                    <div class="flex items-center text-primary font-medium">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </div>
+                </div>
+                
+                <!-- Development Service -->
+                <div class="service-card bg-card rounded-2xl p-8 border border-border">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Website & Mobile App Development</h3>
+                    <p class="text-muted-foreground mb-6">
+                        Custom web and mobile applications built with modern technologies, optimized for performance, scalability, and user experience.
+                    </p>
+                    <div class="flex items-center text-primary font-medium">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </div>
+                </div>
+                
+                <!-- Trading Algorithms Service -->
+                <div class="service-card bg-card rounded-2xl p-8 border border-border">
+                    <div class="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Trading Algorithm Services</h3>
+                    <p class="text-muted-foreground mb-6">
+                        NISM-certified trading algorithms with 5+ years of proven experience. Custom and pre-built solutions for optimal trading performance.
+                    </p>
+                    <div class="flex items-center text-primary font-medium">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Services Section -->
+
+    <!-- @COMPONENT: About Section -->
+    <section id="about" class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Content -->
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                        <span class="text-muted-foreground">About</span> 
+                        <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">TechStudio</span>
+                    </h2>
+                    
+                    <div class="space-y-6 text-lg text-muted-foreground">
+                        <p>
+                            TechStudio is a premier technology services company dedicated to transforming businesses through innovative digital solutions. We specialize in cutting-edge AI automation, comprehensive development services, and strategic trading algorithms.
+                        </p>
+                        <p>
+                            Our team of certified experts brings together years of experience in artificial intelligence, software development, digital marketing, and financial technology to deliver solutions that drive real business growth.
+                        </p>
+                        <p>
+                            From startups to enterprise clients, we've helped hundreds of businesses leverage technology to achieve their goals, increase efficiency, and stay competitive in the digital marketplace.
+                        </p>
+                    </div>
+                    
+                    <!-- Mission Statement -->
+                    <div class="mt-8 p-6 bg-muted/50 rounded-xl border-l-4 border-primary">
+                        <h3 class="text-xl font-semibold mb-3">Our Mission</h3>
+                        <p class="text-muted-foreground">
+                            To empower businesses with technology solutions that not only meet today's challenges but anticipate tomorrow's opportunities, creating lasting value and sustainable growth.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Right Content -->
+                <div class="relative">
+                    <!-- Team collaboration in modern office environment -->
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
+                         alt="Professional team collaborating in modern workspace" 
+                         class="rounded-2xl shadow-xl" />
+                    
+                    <!-- Overlay Card -->
+                    <div class="absolute -bottom-8 -left-8 bg-card p-6 rounded-xl shadow-lg border border-border">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-check text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Certified Experts</div>
+                                <div class="text-sm text-muted-foreground">NISM & Industry Certified</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: About Section -->
+
+    <!-- @COMPONENT: Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-muted/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                    <span class="text-muted-foreground">Client</span> 
+                    <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Testimonials</span>
+                </h2>
+                <p class="text-lg text-muted-foreground max-w-3xl mx-auto">
+                    Hear from our satisfied clients about how TechStudio has transformed their businesses with innovative technology solutions.
+                </p>
+            </div>
+            
+            <!-- Testimonials Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-card rounded-2xl p-8 border border-border">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-muted-foreground mb-6">
+                        "TechStudio's AI automation solution revolutionized our customer service. We've seen a 300% increase in response efficiency and our customers love the 24/7 support."
+                    </p>
+                    <div class="flex items-center">
+                        <!-- Professional business headshot -->
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100&fit=face" 
+                             alt="Michael Chen, CEO" 
+                             class="w-12 h-12 rounded-full mr-4" />
+                        <div>
+                            <div class="font-semibold" data-mock="true">Michael Chen</div>
+                            <div class="text-sm text-muted-foreground" data-mock="true">CEO, TechFlow Solutions</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-card rounded-2xl p-8 border border-border">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-muted-foreground mb-6">
+                        "The trading algorithms developed by TechStudio have consistently outperformed our expectations. Their NISM-certified expertise shows in every strategy."
+                    </p>
+                    <div class="flex items-center">
+                        <!-- Professional business headshot -->
+                        <img src="https://pixabay.com/get/gab0deb7a1ce215bfe6a6a005965613c38b72b3e25d99d671234082c15aa71ba5ca850b5c55c37827dc37efc447467ac9c91cc01ed83bb399a6de48423804778f_1280.jpg" 
+                             alt="Sarah Rodriguez, Investment Director" 
+                             class="w-12 h-12 rounded-full mr-4" />
+                        <div>
+                            <div class="font-semibold" data-mock="true">Sarah Rodriguez</div>
+                            <div class="text-sm text-muted-foreground" data-mock="true">Investment Director, Capital Growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-card rounded-2xl p-8 border border-border">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-muted-foreground mb-6">
+                        "Our new mobile app and website exceeded all expectations. TechStudio delivered a solution that perfectly balances functionality with beautiful design."
+                    </p>
+                    <div class="flex items-center">
+                        <!-- Professional business headshot -->
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&h=100&fit=face" 
+                             alt="David Park, Founder" 
+                             class="w-12 h-12 rounded-full mr-4" />
+                        <div>
+                            <div class="font-semibold" data-mock="true">David Park</div>
+                            <div class="text-sm text-muted-foreground" data-mock="true">Founder, EcoMart</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Testimonials Section -->
+
+    <!-- @COMPONENT: Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Left Content -->
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                        <span class="text-muted-foreground">Get In</span> 
+                        <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Touch</span>
+                    </h2>
+                    
+                    <p class="text-lg text-muted-foreground mb-8">
+                        Ready to transform your business with cutting-edge technology? Let's discuss your project and explore how TechStudio can help you achieve your goals.
+                    </p>
+                    
+                    <!-- Contact Information -->
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-envelope text-primary"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Email</div>
+                                <div class="text-muted-foreground">hello@techstudio.in</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-phone text-primary"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Phone</div>
+                                <div class="text-muted-foreground">+91 12345 67890</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold">Office</div>
+                                <div class="text-muted-foreground">Mumbai, Maharashtra, India</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Links -->
+                    <div class="flex space-x-4 mt-8">
+                        <a href="#" class="w-12 h-12 bg-muted rounded-xl flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-muted rounded-xl flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-muted rounded-xl flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Right Content - Contact Form -->
+                <div class="bg-card rounded-2xl p-8 border border-border">
+                    <h3 class="text-2xl font-semibold mb-6">Send us a message</h3>
+                    
+                    <form class="space-y-6" data-implementation="Add form validation and submission handling">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">First Name</label>
+                                <input type="text" 
+                                       class="w-full px-4 py-3 rounded-lg border border-input bg-background focus:ring-2 focus:ring-ring focus:border-transparent transition-colors" 
+                                       placeholder="Enter your first name" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Last Name</label>
+                                <input type="text" 
+                                       class="w-full px-4 py-3 rounded-lg border border-input bg-background focus:ring-2 focus:ring-ring focus:border-transparent transition-colors" 
+                                       placeholder="Enter your last name" />
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email</label>
+                            <input type="email" 
+                                   class="w-full px-4 py-3 rounded-lg border border-input bg-background focus:ring-2 focus:ring-ring focus:border-transparent transition-colors" 
+                                   placeholder="Enter your email address" />
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Service Interest</label>
+                            <select class="w-full px-4 py-3 rounded-lg border border-input bg-background focus:ring-2 focus:ring-ring focus:border-transparent transition-colors">
+                                <option>Select a service</option>
+                                <option>AI Agents & Automations</option>
+                                <option>Personal Branding</option>
+                                <option>Video Creation</option>
+                                <option>Graphics & Video Editing</option>
+                                <option>Web & Mobile Development</option>
+                                <option>Trading Algorithms</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Message</label>
+                            <textarea rows="5" 
+                                      class="w-full px-4 py-3 rounded-lg border border-input bg-background focus:ring-2 focus:ring-ring focus:border-transparent transition-colors" 
+                                      placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Contact Section -->
+
+    <!-- @COMPONENT: Footer -->
+    <footer class="bg-primary text-primary-foreground py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center transform rotate-45">
+                            <i class="fas fa-sparkles text-white text-sm transform -rotate-45"></i>
+                        </div>
+                        <span class="text-xl font-bold">TechStudio</span>
+                    </div>
+                    <p class="text-primary-foreground/80 mb-6">
+                        Transforming businesses through innovative technology solutions, AI automation, and expert development services.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Services</h4>
+                    <ul class="space-y-3 text-primary-foreground/80">
+                        <li><a href="#" class="hover:text-white transition-colors">AI Agents & Automations</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Personal Branding</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Video Creation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Web Development</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Trading Algorithms</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Company -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Company</h4>
+                    <ul class="space-y-3 text-primary-foreground/80">
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Our Team</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Contact Info</h4>
+                    <div class="space-y-3 text-primary-foreground/80">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope w-5 mr-3"></i>
+                            <span>hello@techstudio.in</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone w-5 mr-3"></i>
+                            <span>+91 12345 67890</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt w-5 mr-3"></i>
+                            <span>Mumbai, Maharashtra, India</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Section -->
+            <div class="border-t border-white/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="text-primary-foreground/80 text-sm">
+                    © 2024 TechStudio. All rights reserved.
+                </div>
+                <div class="flex space-x-6 text-sm text-primary-foreground/80 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <script>
+        // TODO: Implement smooth scrolling navigation
+        // TODO: Add scroll-triggered animations using Intersection Observer API
+        // TODO: Implement contact form validation and submission
+        // TODO: Add loading states and micro-interactions
+        // TODO: Implement responsive mobile menu functionality
+        // TODO: Add parallax scrolling effects for hero section
+        // TODO: Implement testimonials carousel with automatic rotation
+        // TODO: Add service cards hover animations with 3D effects
+        // TODO: Implement custom cursor animations at strategic points
+        // TODO: Add motion graphics during scrolling (conveyor belt animation)
+        
+        (function() {
+            // Mobile menu toggle functionality
+            const mobileMenuButton = document.querySelector('nav button');
+            const mobileMenu = document.createElement('div');
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Form submission handling placeholder
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // TODO: Implement actual form submission logic
+                    alert('Thank you for your message! We will get back to you soon.');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
