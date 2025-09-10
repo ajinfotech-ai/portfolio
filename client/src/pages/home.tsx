@@ -69,10 +69,10 @@ function AboutSection() {
               <Button 
                 variant="outline"
                 className="border border-border text-card-foreground hover:bg-muted transition-colors"
-                data-testid="button-download-portfolio"
+                data-testid="button-view-automations"
               >
                 <Download className="mr-2 h-5 w-5" />
-                Download Portfolio
+                View Automations
               </Button>
             </div>
           </div>

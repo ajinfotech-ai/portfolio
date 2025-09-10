@@ -60,7 +60,7 @@ export function Contact() {
     {
       icon: Mail,
       title: "Email Us",
-      details: ["hello@techstudio.in", "projects@techstudio.in"],
+      details: ["aadarsh@techstudio.in", "ajinfotech2001@gmail.com"],
       color: "text-blue-600",
       bgColor: "bg-blue-100"
     },

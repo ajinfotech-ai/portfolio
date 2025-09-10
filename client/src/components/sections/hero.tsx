@@ -55,7 +55,7 @@ export function Hero() {
           <Button
             onClick={scrollToServices}
             variant="outline"
-            className="glass-effect text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 border-white/30 hover:border-white/50"
+            className="bg-white/10 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 border-white/50 backdrop-blur-md"
             data-testid="button-explore-services"
           >
             <Play className="mr-2 h-5 w-5" />
